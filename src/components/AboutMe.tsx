@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import FeaturedTechnologies from './FeaturedTechnologies'
 
 export default function AboutMe() {
   return (
@@ -25,6 +26,7 @@ export default function AboutMe() {
             />
           </div>
         </div>
+        <FeaturedTechnologies className="w-[80%] mt-16" />
       </div>
     </div>
   )

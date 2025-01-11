@@ -7,6 +7,7 @@ interface AnimationProps {
   children: React.ReactNode
   delay?: number
   direction?: 'top' | 'bottom' | 'left' | 'right'
+  className?: string
 }
 
 export function FlipOnReveal({ children, delay = 0 }: AnimationProps) {
@@ -45,7 +46,6 @@ export function RevealOnLoad({ children, direction, delay = 0 }: AnimationProps)
       transition={{ duration: 0.9, delay, ease: [0.25, 0.8, 0.25, 1] }}
       style={{
         transformOrigin: 'top',
-        display: 'inline-block',
       }}
     >
       {children}
@@ -83,6 +83,29 @@ export function FadeOnLoad({ children, delay = 0 }: AnimationProps) {
       initial="hidden"
       animate="visible"
       transition={{ duration: 0.8, delay, ease: [0.25, 0.8, 0.25, 1] }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+export function RevealOnScroll({
+  children,
+  delay = 0.3,
+  direction = 'top',
+  className = '',
+}: AnimationProps) {
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: direction === 'top' ? -20 : 20 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ duration: 1.1, delay, ease: [0.25, 0.8, 0.25, 1] }}
+      className={className}
     >
       {children}
     </motion.div>

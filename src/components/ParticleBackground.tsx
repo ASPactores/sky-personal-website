@@ -7,7 +7,7 @@ import { loadFull } from "tsparticles";
 
 import particleConfig from "@/config/particles.json";
 
-export const ParticleBackground = () => {
+export default function ParticleBackground() {
     const [init, setInit] = useState(false);
 
     useEffect(() => {

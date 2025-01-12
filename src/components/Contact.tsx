@@ -8,7 +8,7 @@ export default function Contact() {
         <p className="text-sm md:text-base font-semibold text-secondary-200">
           Want to collaborate?
         </p>
-        <p className="text-4xl md:text-6xl font-bold text-primary-50">Let's Talk</p>
+        <p className="text-4xl md:text-6xl font-bold text-primary-50">Get In Touch</p>
       </RevealOnScroll>
       <FlipOnScroll delay={0.5}>
         <p className="text-lg md:text-2xl font-semibold text-accent-500 underline mt-7">

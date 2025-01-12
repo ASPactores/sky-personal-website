@@ -39,7 +39,7 @@ export function RightAligned({
       <div className="flex flex-col items-end justify-center relative z-10 bg-opacity-50 bg-black p-4 -translate-x-14 space-y-3">
         <p className="text-white text-xl font-semibold text-accent-50">{projectName}</p>
         <div className="bg-secondary-950/75 p-5 rounded-8 w-[33rem] text-accent-50 text-sm flex flex-col items-end">
-          <p className="text-left text-sm">{projectDescription}</p>
+          <p className="text-right text-sm">{projectDescription}</p>
           <div className="flex flex-wrap justify-end gap-2 mt-4 w-3/4">
             {technologies.map((tech) => (
               <Badge
@@ -79,7 +79,7 @@ export function LeftAligned({
       <div className="flex flex-col items-start justify-center relative z-10 bg-opacity-50 bg-black p-4 translate-x-14 space-y-3">
         <p className="text-white text-xl font-semibold text-accent-50">{projectName}</p>
         <div className="bg-secondary-950/75 p-5 rounded-8 w-[33rem] text-accent-50 text-sm flex flex-col items-start">
-          <p className="text-right text-sm">{projectDescription}</p>
+          <p className="text-left text-sm">{projectDescription}</p>
           <div className="flex flex-wrap justify-start gap-2 mt-4 w-3/4">
             {technologies.map((tech) => (
               <Badge

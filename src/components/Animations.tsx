@@ -63,7 +63,6 @@ export function RevealOneByOne({ children, direction = 'top', delay = 0 }: Anima
           transition={{ duration: 0.5, delay: delay + index * 0.1 }}
           style={{
             transformOrigin: direction,
-            display: 'inline-block',
           }}
         >
           {child}

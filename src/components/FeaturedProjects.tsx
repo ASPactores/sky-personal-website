@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
-import { RevealOneByOne, RevealOnLoad, RevealOnScroll } from './Animations'
+import { RevealOnScroll } from './Animations'
 
 interface ProjectDetailsProps {
   projectName: string

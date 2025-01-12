@@ -4,6 +4,7 @@ import NavigationBar from '@/components/NavigationBar'
 import Hero from '@/components/Hero'
 import AboutMe from '@/components/AboutMe'
 import FeaturedProjects from '@/components/FeaturedProjects'
+import Footer from '@/components/Footer'
 
 const projectDetails = [
   {
@@ -44,6 +45,7 @@ export default function Home() {
       <Hero />
       <AboutMe />
       <FeaturedProjects projects={projectDetails} />
+      <Footer />
     </div>
   )
 }

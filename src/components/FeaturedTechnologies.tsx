@@ -6,7 +6,7 @@ export default function FeaturedTechnologies({ className }: { className?: string
     <div className={`${className} flex flex-col justify-center items-center`}>
       <div className="w-full h-[1.5px] bg-gradient-to-r from-secondary-900 via-secondary-500 to-secondary-900 mb-5"></div>
       <p className="text-secondary-50 text-xl font-semibold">Technologies</p>
-      <div className="flex items-center justify-center flex-wrap gap-2 w-[80%] mt-8">
+      <div className="flex items-center justify-center flex-wrap gap-2 w-[90%] lg:w-[80%] mt-8">
         {/* Populate with data from cms */}
         <Button
           variant="outline"

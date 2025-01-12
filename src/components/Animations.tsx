@@ -34,7 +34,7 @@ export function FlipOnReveal({ children, delay = 0 }: AnimationProps) {
   )
 }
 
-export function RevealOnLoad({ children, direction, delay = 0 }: AnimationProps) {
+export function RevealOnLoad({ children, direction, delay = 0, className }: AnimationProps) {
   return (
     <motion.div
       variants={{
@@ -47,6 +47,7 @@ export function RevealOnLoad({ children, direction, delay = 0 }: AnimationProps)
       style={{
         transformOrigin: 'top',
       }}
+      className={className}
     >
       {children}
     </motion.div>

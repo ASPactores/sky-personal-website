@@ -24,7 +24,7 @@
   "defaultThemes": {},
   "delay": 0,
   "fullScreen": {
-    "enable": true,
+    "enable": false,
     "zIndex": -1
   },
   "detectRetina": true,
@@ -333,7 +333,7 @@
       "type": "circle"
     },
     "size": {
-      "value": 1.5,
+      "value": 1,
       "animation": {
         "count": 0,
         "enable": false,

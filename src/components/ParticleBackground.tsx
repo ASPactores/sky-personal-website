@@ -1,29 +1,30 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import type { Engine, RecursivePartial, IOptions } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
+import { useEffect, useState } from 'react'
+import Particles, { initParticlesEngine } from '@tsparticles/react'
+import type { Engine, RecursivePartial, IOptions } from '@tsparticles/engine'
+import { loadFull } from 'tsparticles'
 
-import particleConfig from "@/config/particles.json";
+import particleConfig from '@/config/particles.json'
 
 export default function ParticleBackground() {
-    const [init, setInit] = useState(false);
+  const [init, setInit] = useState(false)
 
-    useEffect(() => {
-        initParticlesEngine(async (engine: Engine) => {
-            await loadFull(engine);
-        }).then(() => {
-            setInit(true);
-        });
-    }, []);
+  useEffect(() => {
+    initParticlesEngine(async (engine: Engine) => {
+      await loadFull(engine)
+    }).then(() => {
+      setInit(true)
+    })
+  }, [])
 
-
-    return (
-        init && (
-            <Particles
-                id="tsparticles"
-                options={particleConfig as RecursivePartial<IOptions>}/>
-        )
-    );
-};
+  return (
+    init && (
+      <Particles
+        id="tsparticles"
+        options={particleConfig as RecursivePartial<IOptions>}
+        className="absolute -z-10 w-full h-full top 0"
+      />
+    )
+  )
+}

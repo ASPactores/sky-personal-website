@@ -39,11 +39,11 @@ export default function Home() {
   return (
     <div className="relative">
       <Background />
+      <ParticleBackground />
       <NavigationBar />
       <Hero />
       <AboutMe />
       <FeaturedProjects projects={projectDetails} />
-      <ParticleBackground />
     </div>
   )
 }

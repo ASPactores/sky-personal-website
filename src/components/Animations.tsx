@@ -110,3 +110,28 @@ export function RevealOnScroll({
     </motion.div>
   )
 }
+
+export function FlipOnScroll({ children, delay = 0, className }: AnimationProps) {
+  return (
+    <motion.div
+      variants={{
+        hidden: { rotateX: 90, rotateZ: 3, rotateY: -10, opacity: 0 },
+        visible: { rotateX: 0, rotateZ: 0, rotateY: 0, opacity: 1 },
+      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{
+        duration: 1,
+        ease: [0.5, 1.5, 0.7, 1],
+        delay,
+      }}
+      style={{
+        transformOrigin: 'bottom',
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}

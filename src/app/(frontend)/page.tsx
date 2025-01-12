@@ -5,6 +5,7 @@ import Hero from '@/components/Hero'
 import AboutMe from '@/components/AboutMe'
 import FeaturedProjects from '@/components/FeaturedProjects'
 import Footer from '@/components/Footer'
+import Contact from '@/components/Contact'
 
 const projectDetails = [
   {
@@ -45,6 +46,7 @@ export default function Home() {
       <Hero />
       <AboutMe />
       <FeaturedProjects projects={projectDetails} />
+      <Contact />
       <Footer />
     </div>
   )

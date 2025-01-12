@@ -4,7 +4,7 @@ import { RevealOnScroll } from './Animations'
 
 export default function AboutMe() {
   return (
-    <div className="flex items-center justify-center h-screen w-full">
+    <section className="flex items-center justify-center h-screen w-full">
       <div className="flex flex-col items-center justify-center text-primary-50 text-center my-4 w-[50vw]">
         <p className="text-4xl font-semibold text-left w-full mb-6">About Me</p>
         <RevealOnScroll direction="bottom" className="flex flex-col items-center justify-center">
@@ -37,6 +37,6 @@ export default function AboutMe() {
           <FeaturedTechnologies className="w-[80%] mt-16" />
         </RevealOnScroll>
       </div>
-    </div>
+    </section>
   )
 }

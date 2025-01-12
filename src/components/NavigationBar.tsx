@@ -2,7 +2,7 @@ import { FadeOnLoad, RevealOneByOne } from './Animations'
 
 export default function NavigationBar() {
   return (
-    <div className="z-10 absolute top-0 flex w-full justify-between text-primary-50 items-center py-7 px-60">
+    <section className="z-10 absolute top-0 flex w-full justify-between text-primary-50 items-center py-7 px-60">
       <FadeOnLoad delay={0.1}>
         <p className="text-lg font-semibold">Anakin Pactores</p>
       </FadeOnLoad>
@@ -22,6 +22,6 @@ export default function NavigationBar() {
           </p>
         </RevealOneByOne>
       </div>
-    </div>
+    </section>
   )
 }

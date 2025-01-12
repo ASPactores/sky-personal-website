@@ -6,7 +6,7 @@ import { FlipOnReveal, RevealOneByOne, RevealOnLoad } from './Animations'
 
 export default function Hero() {
   return (
-    <div className="relative flex flex-col items-center justify-center h-svh w-full">
+    <section className="relative flex flex-col items-center justify-center h-svh w-full">
       <div className="flex flex-col items-center justify-center text-primary-50 text-center my-4">
         <RevealOnLoad direction="top">
           <p className="text-base font-semibold underline">Hello, my name is</p>
@@ -48,6 +48,6 @@ export default function Hero() {
       <div className="animate-bounce absolute bottom-20">
         <FontAwesomeIcon icon={faArrowDown} className="w-8 h-8 text-primary-50 mt-10 opacity-50" />
       </div>
-    </div>
+    </section>
   )
 }

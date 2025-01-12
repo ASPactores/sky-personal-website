@@ -39,7 +39,7 @@ const projectDetails = [
 
 export default function Home() {
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip h-full">
       <Background />
       <ParticleBackground />
       <NavigationBar />
@@ -55,8 +55,8 @@ export default function Home() {
 function Background() {
   return (
     <div className="absolute w-full h-full overflow-clip -z-10">
-      <BackgroundGradient className="absolute -right-96 -top-4" />
-      <BackgroundGradient className="absolute -left-96 top-[80vh]" />
+      <BackgroundGradient className="absolute -right-36 md:-right-48 lg:-right-96 -top-4" />
+      <BackgroundGradient className="absolute -left-36 md:-left-48 lg:-left-96 top-[80vh]" />
     </div>
   )
 }

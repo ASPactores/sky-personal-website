@@ -3,10 +3,6 @@ export default {
   darkMode: ['class'],
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
-    screens: {
-      desktop: '1920px',
-      phone: '414px',
-    },
     colors: {
       primary: {
         50: '#f0f7fe',

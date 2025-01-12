@@ -29,7 +29,7 @@
   },
   "detectRetina": true,
   "duration": 0,
-  "fpsLimit": 120,
+  "fpsLimit": 40,
   "interactivity": {
     "detectsOn": "window",
     "events": {
@@ -287,7 +287,7 @@
     },
     "number": {
       "density": {
-        "enable": true,
+        "enable": false,
         "width": 1920,
         "height": 1080
       },
@@ -295,7 +295,7 @@
         "mode": "delete",
         "value": 0
       },
-      "value": 60
+      "value": 100
     },
     "opacity": {
       "value": {
@@ -314,7 +314,7 @@
         "destroy": "none"
       }
     },
-    "reduceDuplicates": false,
+    "reduceDuplicates": true,
     "shadow": {
       "blur": 0,
       "color": {

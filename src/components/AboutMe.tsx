@@ -24,9 +24,8 @@ export default function AboutMe() {
               <Image
                 src="/sky-profile.jpg"
                 alt="Profile Photo"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-8"
+                className="rounded-8 object-cover"
+                fill
               />
             </div>
           </div>

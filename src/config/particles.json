@@ -24,7 +24,7 @@
   "defaultThemes": {},
   "delay": 0,
   "fullScreen": {
-    "enable": false,
+    "enable": true,
     "zIndex": -1
   },
   "detectRetina": true,
@@ -109,9 +109,9 @@
         "quantity": 2
       },
       "repulse": {
-        "distance": 40,
+        "distance": 80,
         "duration": 3,
-        "factor": 1.2,
+        "factor": 1.9,
         "speed": 0.9,
         "maxSpeed": 0.9,
         "easing": "ease-out-circ",
@@ -295,7 +295,7 @@
         "mode": "delete",
         "value": 0
       },
-      "value": 100
+      "value": 60
     },
     "opacity": {
       "value": {

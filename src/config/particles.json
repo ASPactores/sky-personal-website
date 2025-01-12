@@ -490,7 +490,25 @@
   },
   "pauseOnBlur": true,
   "pauseOnOutsideViewport": true,
-  "responsive": [],
+  "responsive": [
+    {
+      "maxWidth": 900,
+      "options": {
+        "particles": {
+          "number": {
+            "value": 10
+          }
+        },
+        "interactivity": {
+          "events": {
+            "onHover": {
+              "enable": false
+            }
+          }
+        }
+      }
+    }
+  ],
   "smooth": false,
   "style": {},
   "themes": [],

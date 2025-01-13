@@ -97,7 +97,7 @@ export function LeftAligned({
   className,
 }: ProjectDetailsProps) {
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
+    <div className={`relative w-full h-full flex items-center justify-center ${className}`}>
       <div className="flex flex-col items-start justify-center relative z-10 bg-opacity-50 bg-black p-4 translate-x-14 space-y-3">
         <p className="text-white text-xl font-semibold text-accent-50">{projectName}</p>
         <div className="bg-secondary-950/75 p-5 rounded-8 w-[33rem] text-accent-50 text-sm flex flex-col items-start">

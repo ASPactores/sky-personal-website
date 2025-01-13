@@ -135,7 +135,7 @@ export interface Page {
   layout?:
     | (
         | {
-            title: {
+            content: {
               root: {
                 type: string;
                 children: {
@@ -159,7 +159,7 @@ export interface Page {
               | {
                   component: (
                     | {
-                        title: {
+                        content: {
                           root: {
                             type: string;
                             children: {
@@ -415,7 +415,7 @@ export interface PagesSelect<T extends boolean = true> {
         'rich-text'?:
           | T
           | {
-              title?: T;
+              content?: T;
               id?: T;
               blockName?: T;
             };
@@ -431,7 +431,7 @@ export interface PagesSelect<T extends boolean = true> {
                           'rich-text'?:
                             | T
                             | {
-                                title?: T;
+                                content?: T;
                                 id?: T;
                                 blockName?: T;
                               };

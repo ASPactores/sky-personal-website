@@ -15,15 +15,11 @@ export const RichText: Block = {
   },
   fields: [
     {
-      name: 'title',
-      label: 'Title',
+      name: 'content',
+      label: 'Content',
       type: 'richText',
       required: true,
-      editor: lexicalEditor({
-        features: ({ defaultFeatures, rootFeatures }) => {
-          return [BoldFeature(), ItalicFeature(), ParagraphFeature(), BlockquoteFeature()]
-        },
-      }),
+      editor: lexicalEditor(),
     },
   ],
 }

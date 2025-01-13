@@ -4,7 +4,23 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '@/components/ui/button'
 import { FlipOnReveal, RevealOneByOne, RevealOnLoad } from './Animations'
 
-export default function Hero() {
+import { RichText } from '@payloadcms/richtext-lexical/react'
+import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import { PayloadLexicalReact, PayloadLexicalReactProps } from '@zapal/payload-lexical-react'
+
+import { LinkType } from '@/types'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+
+interface HeroProps {
+  component: any
+  socialLinks: LinkType[]
+  resumeLink: string
+}
+
+export default function Hero({ component, socialLinks, resumeLink }: HeroProps) {
+  const data = component.Components[0].component.find(
+    (item: any) => item.blockName === 'introduction-blurb',
+  )
   return (
     <section className="relative flex flex-col items-center justify-center h-svh w-full p-10">
       <div className="flex flex-col items-start md:items-center md:justify-center text-primary-50 md:text-center my-4">
@@ -18,25 +34,48 @@ export default function Hero() {
           <p className="text-left md:text-center text-base md:text-xl font-semibold text-accent-600">
             Full-stack Developer | Data Engineer
           </p>
-          <p className="text-left md:text-center text-base max-w-2xl mt-10">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            has been the industrys standard dummy text ever since the 1500s, when an unknown printer
-            took a galley of type and scrambled it to make a type specimen book.
-          </p>
+          <div className="text-left md:text-center text-base max-w-2xl mt-10">
+            <PayloadLexicalReact
+              content={data.content}
+              mark={(mark) => {
+                if (mark.bold) {
+                  return <span className="font-semibold text-accent-600">{mark.text}</span>
+                }
+
+                if (mark.italic) {
+                  return <span className="italic">{mark.text}</span>
+                }
+
+                return <>{mark.text}</>
+              }}
+            />
+          </div>
         </RevealOnLoad>
       </div>
       <div className="flex flex-col md:items-center mt-5 md:space-y-10 md:mt-10 w-full">
         <div className="hidden md:flex items-center justify-center space-x-10">
           <RevealOneByOne delay={1} direction="bottom">
-            <a href="">
-              <FontAwesomeIcon className="w-8 h-8 text-primary-50" icon={faFacebook} />
-            </a>
-            <a href="">
-              <FontAwesomeIcon className="w-8 h-8 text-primary-50" icon={faLinkedin} />
-            </a>
-            <a href="">
-              <FontAwesomeIcon className="w-8 h-8 text-primary-50" icon={faGithub} />
-            </a>
+            {socialLinks.map((data) => {
+              let icon: IconProp
+              switch (data.title) {
+                case 'linkedin':
+                  icon = faLinkedin
+                  break
+                case 'facebook':
+                  icon = faFacebook
+                  break
+                case 'github':
+                  icon = faGithub
+                  break
+                default:
+                  icon = faLinkedin
+              }
+              return (
+                <a key={data.id} href={data.url}>
+                  <FontAwesomeIcon className="w-8 h-8 text-primary-50" icon={icon} />
+                </a>
+              )
+            })}
           </RevealOneByOne>
         </div>
         <RevealOnLoad delay={1.2}>

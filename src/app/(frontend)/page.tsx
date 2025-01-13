@@ -13,36 +13,6 @@ import Contact from '@/components/Contact'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
-const projectDetails = [
-  {
-    projectName: 'Project Name',
-    projectBannerLink: '/sample-featured-image.png',
-    projectDescription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    technologies: ['NextJS', 'React', 'TailwindCSS', 'shadcn', 'Payload'],
-    githubRepoLink: 'https://github.com',
-    previewLink: 'https://preview.com',
-  },
-  {
-    projectName: 'Project Name',
-    projectBannerLink: '/sample-featured-image.png',
-    projectDescription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    technologies: ['NextJS', 'React', 'TailwindCSS', 'shadcn', 'Payload'],
-    githubRepoLink: 'https://github.com',
-    previewLink: 'https://preview.com',
-  },
-  {
-    projectName: 'Project Name',
-    projectBannerLink: '/sample-featured-image.png',
-    projectDescription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    technologies: ['NextJS', 'React', 'TailwindCSS', 'shadcn', 'Payload'],
-    githubRepoLink: 'https://github.com',
-    previewLink: 'https://preview.com',
-  },
-]
-
 const payload = await getPayload({ config })
 
 const getLinks = cache(async () => {
@@ -88,7 +58,7 @@ export default async function Home() {
           case 'about-me':
             return <AboutMe component={section} />
           case 'featured-projects':
-            return <FeaturedProjects projects={projectDetails} />
+            return <FeaturedProjects component={section} />
         }
       })}
       <Contact email={email!} />

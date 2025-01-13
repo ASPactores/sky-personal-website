@@ -4,35 +4,36 @@ import { Badge } from '@/components/ui/badge'
 import { RevealOnScroll } from './Animations'
 import { Button } from './ui/button'
 import { useMediaQuery } from '@/hooks/use-media-query'
+import { Technology, Media } from '@/payload-types'
+import { PayloadLexicalReact } from '@zapal/payload-lexical-react'
 
-interface ProjectDetailsProps {
-  projectName: string
-  projectBannerLink: string
-  projectDescription: string
-  technologies: string[]
-  githubRepoLink: string
-  previewLink: string
+interface ProjectDetails {
+  'project-name': string
+  image: Media
+  description: any
+  technologies: Technology[]
+  'github-link': string
+  'preview-link': string
+}
+
+interface ProjectDetailsProps extends ProjectDetails {
   className?: string
 }
 
-interface FeaturedProjectsProps {
-  projects: ProjectDetailsProps[]
-}
-
 export function RightAligned({
-  projectName,
-  projectBannerLink,
-  projectDescription,
+  ['project-name']: projectName,
+  image,
+  description,
   technologies,
-  githubRepoLink,
-  previewLink,
+  ['github-link']: githubLink,
+  ['preview-link']: previewLink,
   className,
 }: ProjectDetailsProps) {
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
+    <div className={`relative w-full h-full flex items-center justify-center ${className}`}>
       <div className="w-[420px] h-[250px] relative z-0">
         <Image
-          src="/sample-featured-image.png"
+          src={image.url!}
           alt="Project Name"
           className="z-0 translate-x-14 object-cover"
           fill
@@ -41,25 +42,44 @@ export function RightAligned({
       <div className="flex flex-col items-end justify-center relative z-10 bg-opacity-50 bg-black p-4 -translate-x-14 space-y-3">
         <p className="text-white text-xl font-semibold text-accent-50">{projectName}</p>
         <div className="bg-secondary-950/75 p-5 rounded-8 w-[33rem] text-accent-50 text-sm flex flex-col items-end">
-          <p className="text-right text-sm">{projectDescription}</p>
+          <div className="text-left text-sm">
+            <PayloadLexicalReact
+              content={description!}
+              mark={(mark) => {
+                if (mark.bold) {
+                  return <span className="font-semibold text-accent-600">{mark.text}</span>
+                }
+
+                if (mark.italic) {
+                  return <span className="italic">{mark.text}</span>
+                }
+
+                return <>{mark.text}</>
+              }}
+            />
+          </div>
           <div className="flex flex-wrap justify-end gap-2 mt-4 w-3/4">
             {technologies.map((tech) => (
               <Badge
                 variant="secondary"
                 className="bg-accent-800 border-accent-800 text-secondary-200 hover:bg-accent-900"
-                key={tech}
+                key={tech.id}
               >
-                {tech}
+                {tech.name}
               </Badge>
             ))}
           </div>
         </div>
         <div className="flex items-center justify-end gap-4 text-sm text-primary-50 underline italic">
           <p>
-            <a href={githubRepoLink}>Github Repo</a>
+            <a href={githubLink} target="_blank">
+              Github Repo
+            </a>
           </p>
           <p>
-            <a href={previewLink}>Preview</a>
+            <a href={previewLink} target="_blank">
+              Preview
+            </a>
           </p>
         </div>
       </div>
@@ -68,12 +88,12 @@ export function RightAligned({
 }
 
 export function LeftAligned({
-  projectName,
-  projectBannerLink,
-  projectDescription,
+  ['project-name']: projectName,
+  image,
+  description,
   technologies,
-  githubRepoLink,
-  previewLink,
+  ['github-link']: githubLink,
+  ['preview-link']: previewLink,
   className,
 }: ProjectDetailsProps) {
   return (
@@ -81,31 +101,50 @@ export function LeftAligned({
       <div className="flex flex-col items-start justify-center relative z-10 bg-opacity-50 bg-black p-4 translate-x-14 space-y-3">
         <p className="text-white text-xl font-semibold text-accent-50">{projectName}</p>
         <div className="bg-secondary-950/75 p-5 rounded-8 w-[33rem] text-accent-50 text-sm flex flex-col items-start">
-          <p className="text-left text-sm">{projectDescription}</p>
+          <div className="text-left text-sm">
+            <PayloadLexicalReact
+              content={description!}
+              mark={(mark) => {
+                if (mark.bold) {
+                  return <span className="font-semibold text-accent-600">{mark.text}</span>
+                }
+
+                if (mark.italic) {
+                  return <span className="italic">{mark.text}</span>
+                }
+
+                return <>{mark.text}</>
+              }}
+            />
+          </div>
           <div className="flex flex-wrap justify-start gap-2 mt-4 w-3/4">
             {technologies.map((tech) => (
               <Badge
                 variant="secondary"
                 className="bg-accent-800 border-accent-800 text-secondary-200 hover:bg-accent-900"
-                key={tech}
+                key={tech.id}
               >
-                {tech}
+                {tech.name}
               </Badge>
             ))}
           </div>
         </div>
         <div className="flex items-center justify-end gap-4 text-sm text-primary-50 underline italic">
           <p>
-            <a href={githubRepoLink}>Github Repo</a>
+            <a href={githubLink} target="_blank">
+              Github Repo
+            </a>
           </p>
           <p>
-            <a href={previewLink}>Preview</a>
+            <a href={previewLink} target="_blank">
+              Preview
+            </a>
           </p>
         </div>
       </div>
       <div className="w-[420px] h-[250px] relative z-0">
         <Image
-          src="/sample-featured-image.png"
+          src={image.url!}
           alt="Project Name"
           className="z-0 -translate-x-14 object-cover"
           fill
@@ -115,91 +154,61 @@ export function LeftAligned({
   )
 }
 
-// export function MobileView({
-//   projectName,
-//   projectBannerLink,
-//   projectDescription,
-//   technologies,
-//   githubRepoLink,
-//   previewLink,
-//   className,
-// }: ProjectDetailsProps) {
-//   return (
-//     <div className="relative w-[90%] h-full flex flex-col items-center justify-center bg-secondary-950 rounded-7">
-//       <div className="w-full h-[250px] relative">
-//         <Image
-//           src="/sample-featured-image.png"
-//           alt="Project Name"
-//           className="rounded-t-7 object-cover"
-//           fill
-//         />
-//       </div>
-//       <div className="flex flex-col items-start justify-center p-8 space-y-3">
-//         <p className="text-secondary-50 text-lg font-semibold">Project Name</p>
-//         <p className="text-secondary-200 text-sm">{projectDescription}</p>
-//         <div className="flex flex-wrap gap-2">
-//           {technologies.map((tech) => (
-//             <Badge
-//               variant="secondary"
-//               className="bg-secondary-800 border-secondary-800 text-secondary-200 hover:bg-secondary-800"
-//               key={tech}
-//             >
-//               {tech}
-//             </Badge>
-//           ))}
-//         </div>
-//         <div className="flex items-center justify-between w-full text-sm text-secondary-50 font-semibold pt-5">
-//           <Button className="bg-accent-700 w-1/2">
-//             <a href="#">Preview</a>
-//           </Button>
-//           <p className="underline text-center">
-//             <a href="#">Github Repository</a>
-//           </p>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
 export function MobileView({
-  projectName,
-  projectBannerLink,
-  projectDescription,
+  ['project-name']: projectName,
+  image,
+  description,
   technologies,
-  githubRepoLink,
-  previewLink,
+  ['github-link']: githubLink,
+  ['preview-link']: previewLink,
   className,
 }: ProjectDetailsProps) {
   return (
-    <div className="relative w-full max-w-[90%] h-full flex flex-col items-center justify-center bg-secondary-950 rounded-7 mx-auto">
+    <div
+      className={`relative w-full max-w-[90%] h-full flex flex-col items-center justify-center bg-secondary-950 rounded-7 mx-auto ${className}`}
+    >
       <div className="w-full h-[250px] relative">
-        <Image
-          src="/sample-featured-image.png"
-          alt="Project Name"
-          className="rounded-t-7 object-cover"
-          fill
-        />
+        <Image src={image.url!} alt="Project Name" className="rounded-t-7 object-cover" fill />
       </div>
       <div className="flex flex-col items-start justify-center p-8 space-y-3 w-full">
         <p className="text-secondary-50 text-lg font-semibold">{projectName}</p>
-        <p className="text-secondary-200 text-sm">{projectDescription}</p>
+        <div className="text-secondary-50 text-left text-sm">
+          <PayloadLexicalReact
+            content={description!}
+            mark={(mark) => {
+              if (mark.bold) {
+                return <span className="font-semibold text-accent-600">{mark.text}</span>
+              }
+
+              if (mark.italic) {
+                return <span className="italic">{mark.text}</span>
+              }
+
+              return <>{mark.text}</>
+            }}
+          />
+        </div>
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
             <Badge
               variant="secondary"
               className="bg-secondary-800 border-secondary-800 text-secondary-200 hover:bg-secondary-800"
-              key={tech}
+              key={tech.id}
             >
-              {tech}
+              {tech.name}
             </Badge>
           ))}
         </div>
         <div className="flex items-center justify-between w-full text-sm text-secondary-50 font-semibold pt-5">
           <Button className="bg-accent-700 hover:bg-accent-800 w-1/2">
-            <a href="#">Preview</a>
+            <a href={previewLink} target="_blank">
+              Preview
+            </a>
           </Button>
           <p className="underline text-center">
-            <a href="#">Github Repository</a>
+            <a href={githubLink} target="_blank">
+              Github Repository
+            </a>
           </p>
         </div>
       </div>
@@ -207,10 +216,15 @@ export function MobileView({
   )
 }
 
-export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
+export default function FeaturedProjects({ component }: any) {
   const isMediumScreen = useMediaQuery('(min-width: 980px)')
+  const projects = component.Components[0].component as ProjectDetails[]
+
   return (
-    <section className="flex flex-col items-center justify-center w-full h-full py-36">
+    <section
+      id="projects"
+      className="flex flex-col items-center justify-center w-full h-full py-36"
+    >
       <p className="text-2xl md:text-4xl font-semibold text-primary-50 mb-11">Featured Projects</p>
       {isMediumScreen ? (
         <div className="space-y-28">

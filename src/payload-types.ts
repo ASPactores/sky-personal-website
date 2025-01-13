@@ -36,9 +36,11 @@ export interface Config {
   };
   globals: {
     links: Link;
+    'navigation-links': NavigationLink;
   };
   globalsSelect: {
     links: LinksSelect<false> | LinksSelect<true>;
+    'navigation-links': NavigationLinksSelect<false> | NavigationLinksSelect<true>;
   };
   locale: null;
   user: User & {
@@ -561,9 +563,41 @@ export interface Link {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation-links".
+ */
+export interface NavigationLink {
+  id: number;
+  link?:
+    | {
+        title: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "links_select".
  */
 export interface LinksSelect<T extends boolean = true> {
+  link?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation-links_select".
+ */
+export interface NavigationLinksSelect<T extends boolean = true> {
   link?:
     | T
     | {

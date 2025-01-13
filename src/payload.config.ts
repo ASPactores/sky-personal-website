@@ -12,6 +12,7 @@ import { Logo } from '@/payload/collections/Logo'
 import { Links } from '@/payload/globals/Links'
 import { Pages } from '@/payload/collections/Pages'
 import { Technologies } from '@/payload/collections/Technologies'
+import { NavigationLinks } from '@/payload/globals/NavigationLinks'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,9 +25,8 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Logo, Pages, Technologies],
-  globals: [Links],
+  globals: [Links, NavigationLinks],
   editor: lexicalEditor(),
-
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

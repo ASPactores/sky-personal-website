@@ -7,6 +7,9 @@ import FeaturedProjects from '@/components/FeaturedProjects'
 import Footer from '@/components/Footer'
 import Contact from '@/components/Contact'
 
+import { getPayload } from 'payload'
+import config from '@payload-config'
+
 const projectDetails = [
   {
     projectName: 'Project Name',
@@ -37,17 +40,45 @@ const projectDetails = [
   },
 ]
 
-export default function Home() {
+export default async function Home() {
+  const payload = await getPayload({ config })
+
+  const { link: links } = await payload.findGlobal({
+    slug: 'links',
+  })
+  const { docs } = await payload.find({
+    collection: 'pages',
+    where: {
+      'page-name': {
+        equals: 'Home',
+      },
+    },
+  })
+
+  const socialLinks = links!.filter((link) => link.title !== 'email')
+  const email = links!.find((link) => link.title === 'email')?.url
+  const resumeLink = links!.find((link) => link.title === 'resume')?.url
+  const homepageLayout = docs[0].layout
+
   return (
     <div className="relative overflow-x-clip h-full">
       <Background />
       <ParticleBackground />
       <NavigationBar />
-      <Hero />
-      <AboutMe />
-      <FeaturedProjects projects={projectDetails} />
-      <Contact />
-      <Footer />
+      {homepageLayout!.map((section) => {
+        switch (section.blockName) {
+          case 'introduction':
+            return <Hero component={section} socialLinks={socialLinks} resumeLink={resumeLink!} />
+          case 'about-me':
+            return <AboutMe />
+          case 'featured-projects':
+            return <FeaturedProjects projects={projectDetails} />
+          case 'contact':
+            return <Contact />
+          case 'footer':
+            return <Footer />
+        }
+      })}
     </div>
   )
 }

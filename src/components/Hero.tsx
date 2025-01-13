@@ -79,9 +79,11 @@ export default function Hero({ component, socialLinks, resumeLink }: HeroProps) 
           </RevealOneByOne>
         </div>
         <RevealOnLoad delay={1.2}>
-          <Button className="bg-accent-900 p-5 text-base drop-shadow-primary hover:drop-shadow-primary-active hover:bg-accent-950">
-            View Resume
-          </Button>
+          <a href={resumeLink}>
+            <Button className="bg-accent-900 p-5 text-base drop-shadow-primary hover:drop-shadow-primary-active hover:bg-accent-950">
+              View Resume
+            </Button>
+          </a>
         </RevealOnLoad>
       </div>
       <div className="animate-bounce absolute bottom-20">

@@ -4,7 +4,6 @@ import { FadeOnLoad, RevealOneByOne } from './Animations'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { useMediaQuery } from '@/hooks/use-media-query'
-
 import {
   Sheet,
   SheetContent,
@@ -14,8 +13,25 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 
+import { useEffect, useState } from 'react'
+
+import getNavigationLinks from '@/actions/getNavigationLinks'
+import { LinkType } from '@/types'
+
 export default function NavigationBar() {
   const isMediumScreen = useMediaQuery('(min-width: 980px)')
+  const [navigationLinks, setNavigationLinks] = useState<LinkType[]>([])
+
+  useEffect(() => {
+    const fetchNavigationLinks = async () => {
+      const links = await getNavigationLinks()
+      if (links) {
+        setNavigationLinks(links)
+      }
+    }
+
+    fetchNavigationLinks()
+  }, [])
 
   return (
     <section
@@ -28,18 +44,11 @@ export default function NavigationBar() {
           </FadeOnLoad>
           <div className="flex text-sm space-x-8">
             <RevealOneByOne delay={0.3}>
-              <p>
-                <a href="#about">About</a>
-              </p>
-              <p>
-                <a href="#experience">Experience</a>
-              </p>
-              <p>
-                <a href="#projects">Projects</a>
-              </p>
-              <p>
-                <a href="#contact">Contact</a>
-              </p>
+              {navigationLinks.map((link) => (
+                <p key={link.title}>
+                  <a href={link.url}>{link.title}</a>
+                </p>
+              ))}
             </RevealOneByOne>
           </div>
         </>
@@ -52,18 +61,11 @@ export default function NavigationBar() {
             <SheetTitle className="hidden">Menu</SheetTitle>
             <SheetContent className="flex flex-col h-full items-center justify-center text-2xl font-semibold bg-secondary-950 border-none text-primary-50 space-y-9">
               <RevealOneByOne delay={0.3}>
-                <p>
-                  <a href="#about">About</a>
-                </p>
-                <p>
-                  <a href="#experience">Experience</a>
-                </p>
-                <p>
-                  <a href="#projects">Projects</a>
-                </p>
-                <p>
-                  <a href="#contact">Contact</a>
-                </p>
+                {navigationLinks.map((link) => (
+                  <p key={link.title}>
+                    <a href={link.url}>{link.title}</a>
+                  </p>
+                ))}
               </RevealOneByOne>
             </SheetContent>
           </SheetHeader>

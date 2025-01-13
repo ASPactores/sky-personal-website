@@ -9,6 +9,9 @@ export const Technologies: CollectionConfig = {
     update: authenticatedUser,
     delete: authenticatedUser,
   },
+  admin: {
+    useAsTitle: 'name',
+  },
   fields: [
     {
       name: 'name',

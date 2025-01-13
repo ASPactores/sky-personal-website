@@ -1,5 +1,8 @@
+import { cache } from 'react'
+import 'server-only'
+
 import ParticleBackground from '@/components/ParticleBackground'
-import BackgroundGradient from '@/components/BackgroundGradient'
+import Background from '@/components/Background'
 import NavigationBar from '@/components/NavigationBar'
 import Hero from '@/components/Hero'
 import AboutMe from '@/components/AboutMe'
@@ -40,12 +43,21 @@ const projectDetails = [
   },
 ]
 
-export default async function Home() {
-  const payload = await getPayload({ config })
+const payload = await getPayload({ config })
 
+const getLinks = cache(async () => {
   const { link: links } = await payload.findGlobal({
     slug: 'links',
   })
+
+  return {
+    socialLinks: links!.filter((link) => link.title !== 'email' && link.title !== 'resume'),
+    email: links!.find((link) => link.title === 'email')?.url,
+    resumeLink: links!.find((link) => link.title === 'resume')?.url,
+  }
+})
+
+const getLayout = cache(async () => {
   const { docs } = await payload.find({
     collection: 'pages',
     where: {
@@ -55,13 +67,17 @@ export default async function Home() {
     },
   })
 
-  const socialLinks = links!.filter((link) => link.title !== 'email')
-  const email = links!.find((link) => link.title === 'email')?.url
-  const resumeLink = links!.find((link) => link.title === 'resume')?.url
-  const homepageLayout = docs[0].layout
+  return docs[0].layout
+})
+
+export default async function Home() {
+  const [links, layout] = await Promise.all([getLinks(), getLayout()])
+
+  const { socialLinks, email, resumeLink } = links
+  const homepageLayout = layout
 
   return (
-    <div className="relative overflow-x-clip h-full">
+    <main className="relative overflow-x-clip h-full">
       <Background />
       <ParticleBackground />
       <NavigationBar />
@@ -70,24 +86,13 @@ export default async function Home() {
           case 'introduction':
             return <Hero component={section} socialLinks={socialLinks} resumeLink={resumeLink!} />
           case 'about-me':
-            return <AboutMe />
+            return <AboutMe component={section} />
           case 'featured-projects':
             return <FeaturedProjects projects={projectDetails} />
-          case 'contact':
-            return <Contact />
-          case 'footer':
-            return <Footer />
         }
       })}
-    </div>
-  )
-}
-
-function Background() {
-  return (
-    <div className="absolute w-full h-full overflow-clip -z-10">
-      <BackgroundGradient className="absolute -right-36 md:-right-48 lg:-right-96 -top-4" />
-      <BackgroundGradient className="absolute -left-36 md:-left-48 lg:-left-96 top-[80vh]" />
-    </div>
+      <Contact email={email!} />
+      <Footer socialLinks={socialLinks} />
+    </main>
   )
 }

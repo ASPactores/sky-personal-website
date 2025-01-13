@@ -1,7 +1,7 @@
 import { FlipOnScroll, RevealOnScroll } from './Animations'
 import BackgroundGradient from './BackgroundGradient'
 
-export default function Contact() {
+export default function Contact({ email }: { email: string }) {
   return (
     <section className="relative w-full h-svh flex flex-col justify-center items-center overflow-clip">
       <RevealOnScroll direction="bottom" className="flex flex-col items-center justify-center">
@@ -12,7 +12,7 @@ export default function Contact() {
       </RevealOnScroll>
       <FlipOnScroll delay={0.5}>
         <p className="text-lg md:text-2xl font-semibold text-accent-500 underline mt-7">
-          <a href="mailto:anakin.pactores@gmail.com">anakin.pactores@gmail.com</a>
+          <a href={`mailto:${email}`}>{email}</a>
         </p>
       </FlipOnScroll>
       <BackgroundGradient className="absolute -z-10" />

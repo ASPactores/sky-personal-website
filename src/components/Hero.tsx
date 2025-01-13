@@ -4,16 +4,14 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '@/components/ui/button'
 import { FlipOnReveal, RevealOneByOne, RevealOnLoad } from './Animations'
 
-import { RichText } from '@payloadcms/richtext-lexical/react'
-import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
-import { PayloadLexicalReact, PayloadLexicalReactProps } from '@zapal/payload-lexical-react'
+import { PayloadLexicalReact } from '@zapal/payload-lexical-react'
 
-import { LinkType } from '@/types'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { Links } from '@/types'
 
 interface HeroProps {
   component: any
-  socialLinks: LinkType[]
+  socialLinks: Links
   resumeLink: string
 }
 

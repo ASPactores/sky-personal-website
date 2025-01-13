@@ -1,8 +1,28 @@
 import Image from 'next/image'
 import FeaturedTechnologies from './FeaturedTechnologies'
 import { RevealOnScroll } from './Animations'
+import { PayloadLexicalReact } from '@zapal/payload-lexical-react'
 
-export default function AboutMe() {
+export default function AboutMe({ component }: any) {
+  const { NEXT_PUBLIC_DEPLOYMENT_URL: baseUrl } = process.env
+  const { content, profile_photo, technologies } = component.Components[0].component.reduce(
+    (acc: any, item: any) => {
+      switch (item.blockName) {
+        case 'content':
+          acc.content = item.content
+          break
+        case 'profile-photo':
+          acc.profile_photo = item.photo
+          break
+        case 'technologies':
+          acc.technologies = item.items
+          break
+      }
+      return acc
+    },
+    { content: null, profile_photo: null, technologies: null },
+  )
+
   return (
     <section className="flex items-center justify-center h-full w-full">
       <div className="flex flex-col items-center justify-center text-primary-50 text-center my-4 px-10 md:w-[60vw] lg:w-[50vw]">
@@ -11,18 +31,26 @@ export default function AboutMe() {
         </p>
         <RevealOnScroll direction="bottom" className="flex flex-col items-center justify-center">
           <div className="flex flex-col-reverse items-center md:grid md:grid-cols-3 md:content-center md:gap-7 md:items-start justify justify-items-end lg:w-[90%]">
-            <p className="text-left col-span-2 text-sm mt-8 md:mt-0">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industrys standard dummy text ever since the 1500s, when an unknown
-              printer took a galley of type and scrambled it to make a type specimen book. Lorem
-              Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-              been the industrys standard dummy text ever since the 1500s, when an unknown printer
-              took a galley of type and scrambled it to make a type specimen book.
-            </p>
+            <div className="text-left col-span-2 text-sm mt-8 md:mt-0">
+              <PayloadLexicalReact
+                content={content!}
+                mark={(mark) => {
+                  if (mark.bold) {
+                    return <span className="font-semibold text-accent-600">{mark.text}</span>
+                  }
+
+                  if (mark.italic) {
+                    return <span className="italic">{mark.text}</span>
+                  }
+
+                  return <>{mark.text}</>
+                }}
+              />
+            </div>
             <div className="relative w-[100%] max-w-52 aspect-square group hover:drop-shadow-primary-active transition-all duration-300 content-center">
               <div className="absolute inset-0 bg-accent-900 opacity-50 rounded-8 z-10 group-hover:opacity-0 transition-opacity duration-300 hover:cursor-pointer"></div>
               <Image
-                src="/sky-profile.jpg"
+                src={`${baseUrl}${profile_photo!.url}`}
                 alt="Profile Photo"
                 className="rounded-8 object-cover"
                 fill
@@ -35,7 +63,7 @@ export default function AboutMe() {
           delay={0.5}
           className="flex flex-col items-center justify-center"
         >
-          <FeaturedTechnologies className="md:w-[80%] mt-16" />
+          <FeaturedTechnologies technologies={technologies!} className="md:w-[80%] mt-16" />
         </RevealOnScroll>
       </div>
     </section>

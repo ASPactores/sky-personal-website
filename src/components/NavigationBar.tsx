@@ -4,23 +4,17 @@ import { FadeOnLoad, RevealOneByOne } from './Animations'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { useMediaQuery } from '@/hooks/use-media-query'
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 
 import { useEffect, useState } from 'react'
 
 import getNavigationLinks from '@/actions/getNavigationLinks'
-import { LinkType } from '@/types'
+
+import { Links } from '@/types'
 
 export default function NavigationBar() {
   const isMediumScreen = useMediaQuery('(min-width: 980px)')
-  const [navigationLinks, setNavigationLinks] = useState<LinkType[]>([])
+  const [navigationLinks, setNavigationLinks] = useState<Links>([])
 
   useEffect(() => {
     const fetchNavigationLinks = async () => {
@@ -29,12 +23,11 @@ export default function NavigationBar() {
         setNavigationLinks(links)
       }
     }
-
     fetchNavigationLinks()
   }, [])
 
   return (
-    <section
+    <nav
       className={`z-10 absolute top-0 flex w-full text-primary-50 items-center py-7  ${isMediumScreen ? 'justify-between px-60' : 'justify-end px-5'}`}
     >
       {isMediumScreen ? (
@@ -71,6 +64,6 @@ export default function NavigationBar() {
           </SheetHeader>
         </Sheet>
       )}
-    </section>
+    </nav>
   )
 }

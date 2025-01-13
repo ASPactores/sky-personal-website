@@ -1,8 +1,3 @@
-# blank
+# (WIP) Personal Website
 
-blank
-
-## Attributes
-
-- **Database**: mongodb
-- **Storage Adapter**: localDisk
+Made with NextJS 15, Framer Motion, Payload CMS, and PostgreSQL.

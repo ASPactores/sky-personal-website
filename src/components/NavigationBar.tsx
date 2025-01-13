@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import getNavigationLinks from '@/actions/getNavigationLinks'
 
 import { Links } from '@/types'
+import Link from 'next/link'
 
 export default function NavigationBar() {
   const isMediumScreen = useMediaQuery('(min-width: 980px)')
@@ -39,7 +40,7 @@ export default function NavigationBar() {
             <RevealOneByOne delay={0.3}>
               {navigationLinks.map((link) => (
                 <p key={link.title}>
-                  <a href={link.url}>{link.title}</a>
+                  <Link href={link.url}>{link.title}</Link>
                 </p>
               ))}
             </RevealOneByOne>
@@ -56,7 +57,7 @@ export default function NavigationBar() {
               <RevealOneByOne delay={0.3}>
                 {navigationLinks.map((link) => (
                   <p key={link.title}>
-                    <a href={link.url}>{link.title}</a>
+                    <Link href={link.url}>{link.title}</Link>
                   </p>
                 ))}
               </RevealOneByOne>

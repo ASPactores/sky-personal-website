@@ -3,7 +3,10 @@ import BackgroundGradient from './BackgroundGradient'
 
 export default function Contact({ email }: { email: string }) {
   return (
-    <section className="relative w-full h-svh flex flex-col justify-center items-center overflow-clip">
+    <section
+      id="contact"
+      className="relative w-full h-svh flex flex-col justify-center items-center overflow-clip"
+    >
       <RevealOnScroll direction="bottom" className="flex flex-col items-center justify-center">
         <p className="text-sm md:text-base font-semibold text-secondary-200">
           Want to collaborate?

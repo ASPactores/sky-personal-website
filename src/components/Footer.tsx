@@ -28,7 +28,7 @@ export default function Footer({ socialLinks }: { socialLinks: Links }) {
                 icon = faLinkedin
             }
             return (
-              <a key={data.id} href={data.url}>
+              <a key={data.id} href={data.url} target="_blank">
                 <FontAwesomeIcon className="w-7 h-7 text-primary-50" icon={icon} />
               </a>
             )

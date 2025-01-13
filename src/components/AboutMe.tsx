@@ -4,7 +4,6 @@ import { RevealOnScroll } from './Animations'
 import { PayloadLexicalReact } from '@zapal/payload-lexical-react'
 
 export default function AboutMe({ component }: any) {
-  const { NEXT_PUBLIC_DEPLOYMENT_URL: baseUrl } = process.env
   const { content, profile_photo, technologies } = component.Components[0].component.reduce(
     (acc: any, item: any) => {
       switch (item.blockName) {
@@ -24,7 +23,7 @@ export default function AboutMe({ component }: any) {
   )
 
   return (
-    <section className="flex items-center justify-center h-full w-full">
+    <section id="about" className="flex items-center justify-center h-svh w-full">
       <div className="flex flex-col items-center justify-center text-primary-50 text-center my-4 px-10 md:w-[60vw] lg:w-[50vw]">
         <p className="text-2xl md:text-4xl font-semibold md:text-left w-full mb-8 md:mb-6">
           About Me
@@ -50,7 +49,7 @@ export default function AboutMe({ component }: any) {
             <div className="relative w-[100%] max-w-52 aspect-square group hover:drop-shadow-primary-active transition-all duration-300 content-center">
               <div className="absolute inset-0 bg-accent-900 opacity-50 rounded-8 z-10 group-hover:opacity-0 transition-opacity duration-300 hover:cursor-pointer"></div>
               <Image
-                src={`${baseUrl}${profile_photo!.url}`}
+                src={profile_photo.url!}
                 alt="Profile Photo"
                 className="rounded-8 object-cover"
                 fill

@@ -69,7 +69,7 @@ export default function Hero({ component, socialLinks, resumeLink }: HeroProps) 
                   icon = faLinkedin
               }
               return (
-                <a key={data.id} href={data.url}>
+                <a key={data.id} href={data.url} target="_blank">
                   <FontAwesomeIcon className="w-8 h-8 text-primary-50" icon={icon} />
                 </a>
               )
@@ -77,7 +77,7 @@ export default function Hero({ component, socialLinks, resumeLink }: HeroProps) 
           </RevealOneByOne>
         </div>
         <RevealOnLoad delay={1.2}>
-          <a href={resumeLink}>
+          <a href={resumeLink} target="_blank">
             <Button className="bg-accent-900 p-5 text-base drop-shadow-primary hover:drop-shadow-primary-active hover:bg-accent-950">
               View Resume
             </Button>

@@ -1,11 +1,5 @@
 import type { Block } from 'payload'
-import {
-  BoldFeature,
-  ItalicFeature,
-  ParagraphFeature,
-  BlockquoteFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const RichText: Block = {
   slug: 'rich-text',

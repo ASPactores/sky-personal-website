@@ -1,4 +1,4 @@
-import type { Block, Field } from 'payload'
+import type { Block } from 'payload'
 
 export const TechnologyList: Block = {
   slug: 'technologies-list',

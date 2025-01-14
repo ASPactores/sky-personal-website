@@ -38,6 +38,7 @@ export function RightAligned({
           alt="Project Name"
           className="z-0 translate-x-14 object-cover"
           fill
+          priority={true}
         />
       </div>
       <div className="flex flex-col items-end justify-center relative z-10 bg-opacity-50 bg-black p-4 -translate-x-14 space-y-3">
@@ -149,6 +150,7 @@ export function LeftAligned({
           alt="Project Name"
           className="z-0 -translate-x-14 object-cover"
           fill
+          priority={true}
         />
       </div>
     </div>
@@ -169,7 +171,13 @@ export function MobileView({
       className={`relative w-full max-w-[90%] h-full flex flex-col items-center justify-center bg-secondary-950 rounded-7 mx-auto ${className}`}
     >
       <div className="w-full h-[250px] relative">
-        <Image src={image.url!} alt="Project Name" className="rounded-t-7 object-cover" fill />
+        <Image
+          src={image.url!}
+          alt="Project Name"
+          className="rounded-t-7 object-cover"
+          fill
+          priority={true}
+        />
       </div>
       <div className="flex flex-col items-start justify-center p-8 space-y-3 w-full">
         <p className="text-secondary-50 text-lg font-semibold">{projectName}</p>

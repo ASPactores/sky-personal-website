@@ -27,6 +27,14 @@ const getLinks = cache(async () => {
   }
 })
 
+const getNavigationLinks = cache(async () => {
+  const { link: links } = await payload.findGlobal({
+    slug: 'navigation-links',
+  })
+
+  return links
+})
+
 const getLayout = cache(async () => {
   const { docs } = await payload.find({
     collection: 'pages',
@@ -41,7 +49,11 @@ const getLayout = cache(async () => {
 })
 
 export default async function Home() {
-  const [links, layout] = await Promise.all([getLinks(), getLayout()])
+  const [links, layout, navigationLinks] = await Promise.all([
+    getLinks(),
+    getLayout(),
+    getNavigationLinks(),
+  ])
 
   const { socialLinks, email, resumeLink } = links
   const homepageLayout = layout
@@ -50,7 +62,7 @@ export default async function Home() {
     <main className="relative overflow-x-clip h-full">
       <Background />
       <ParticleBackground />
-      <NavigationBar />
+      <NavigationBar navigationLinks={navigationLinks!} />
       {homepageLayout!.map((section) => {
         switch (section.blockName) {
           case 'introduction':

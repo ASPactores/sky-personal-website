@@ -6,26 +6,11 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 
-import { useEffect, useState } from 'react'
-
-import getNavigationLinks from '@/actions/getNavigationLinks'
-
-import { Links } from '@/types'
 import Link from 'next/link'
+import { Links } from '@/types'
 
-export default function NavigationBar() {
+export default function NavigationBar({ navigationLinks }: { navigationLinks: Links }) {
   const isMediumScreen = useMediaQuery('(min-width: 980px)')
-  const [navigationLinks, setNavigationLinks] = useState<Links>([])
-
-  useEffect(() => {
-    const fetchNavigationLinks = async () => {
-      const links = await getNavigationLinks()
-      if (links) {
-        setNavigationLinks(links)
-      }
-    }
-    fetchNavigationLinks()
-  }, [])
 
   return (
     <nav
@@ -37,7 +22,7 @@ export default function NavigationBar() {
             <p className="text-lg font-semibold">Anakin Pactores</p>
           </FadeOnLoad>
           <div className="flex text-sm space-x-8">
-            <RevealOneByOne delay={0.3}>
+            <RevealOneByOne delay={0.1}>
               {navigationLinks.map((link) => (
                 <p key={link.title}>
                   <Link href={link.url}>{link.title}</Link>

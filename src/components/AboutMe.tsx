@@ -53,6 +53,7 @@ export default function AboutMe({ component }: any) {
                 alt="Profile Photo"
                 className="rounded-8 object-cover"
                 fill
+                priority={true}
               />
             </div>
           </div>

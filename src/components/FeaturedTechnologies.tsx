@@ -20,7 +20,13 @@ export default function FeaturedTechnologies({
             variant="outline"
             className="bg-transparent hover:filter-none hover:cursor-auto p-4"
           >
-            <Image src={`${(tech.logo as Logo).url}`} alt="React Logo" width={30} height={30} />
+            <Image
+              src={`${(tech.logo as Logo).url}`}
+              alt="React Logo"
+              width={30}
+              height={30}
+              priority={true}
+            />
             {tech.name}
           </Button>
         ))}

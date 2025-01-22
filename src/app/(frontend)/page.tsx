@@ -7,6 +7,7 @@ import NavigationBar from '@/components/NavigationBar'
 import Hero from '@/components/Hero'
 import AboutMe from '@/components/AboutMe'
 import FeaturedProjects from '@/components/FeaturedProjects'
+import OtherProjects from '@/components/OtherProjects'
 import Footer from '@/components/Footer'
 import Contact from '@/components/Contact'
 
@@ -71,6 +72,8 @@ export default async function Home() {
             return <AboutMe component={section} />
           case 'featured-projects':
             return <FeaturedProjects component={section} />
+          case 'other-projects':
+            return <OtherProjects component={section} />
         }
       })}
       <Contact email={email!} />

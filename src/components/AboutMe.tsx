@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import FeaturedTechnologies from './FeaturedTechnologies'
 import { RevealOnScroll } from './Animations'
-import { PayloadLexicalReact } from '@zapal/payload-lexical-react'
+import { defaultElements, PayloadLexicalReact } from '@zapal/payload-lexical-react'
 
 export default function AboutMe({ component }: any) {
   const { content, profile_photo, technologies } = component.Components[0].component.reduce(
@@ -23,7 +23,7 @@ export default function AboutMe({ component }: any) {
   )
 
   return (
-    <section id="about" className="flex items-center justify-center h-svh w-full">
+    <section id="about" className="flex items-center justify-center h-full w-full">
       <div className="flex flex-col items-center justify-center text-primary-50 text-center my-4 px-10 md:w-[60vw] lg:w-[50vw]">
         <p className="text-2xl md:text-4xl font-semibold md:text-left w-full mb-8 md:mb-6">
           About Me
@@ -43,6 +43,12 @@ export default function AboutMe({ component }: any) {
                   }
 
                   return <>{mark.text}</>
+                }}
+                elements={{
+                  ...defaultElements,
+                  paragraph: (props) => {
+                    return <p className="mb-4 text-justify">{props.children}</p>
+                  },
                 }}
               />
             </div>

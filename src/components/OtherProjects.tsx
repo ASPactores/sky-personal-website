@@ -1,5 +1,5 @@
 import { Media, Technology } from '@/payload-types'
-import { RevealOneByOne } from './Animations'
+import { RevealOnScroll } from './Animations'
 import InfoCard from './InfoCard'
 
 interface OtherProjectsProps {
@@ -32,7 +32,7 @@ export default function OtherProjects({ component }: any) {
             ['preview-link']: previewLink,
           } = project
           return (
-            <RevealOneByOne
+            <RevealOnScroll
               delay={index * 0.3}
               key={index}
               direction="bottom"
@@ -47,7 +47,7 @@ export default function OtherProjects({ component }: any) {
                 previewLink={previewLink}
                 className="w-full lg:max-w-96 sm:my-5"
               />
-            </RevealOneByOne>
+            </RevealOnScroll>
           )
         })}
       </div>

@@ -34,7 +34,8 @@ export function RightAligned({
 }: ProjectDetailsProps) {
   return (
     <div className={`relative w-full h-full flex items-center justify-center ${className}`}>
-      <div className="w-[420px] h-[250px] relative z-0">
+      <div className="w-[420px] h-[250px] relative z-0 hover:drop-shadow-primary-active transition-all duration-300 content-center group">
+        <div className="absolute translate-x-14 inset-0 bg-accent-900 opacity-50 z-10 group-hover:opacity-0 transition-opacity duration-300 hover:cursor-pointer"></div>
         <Image
           src={image.url!}
           alt="Project Name"
@@ -146,7 +147,8 @@ export function LeftAligned({
           </p>
         </div>
       </div>
-      <div className="w-[420px] h-[250px] relative z-0">
+      <div className="w-[420px] h-[250px] relative z-0 hover:drop-shadow-primary-active transition-all duration-300 content-center group">
+        <div className="absolute -translate-x-14 inset-0 bg-accent-900 opacity-50 z-10 group-hover:opacity-0 transition-opacity duration-300 hover:cursor-pointer"></div>
         <Image
           src={image.url!}
           alt="Project Name"

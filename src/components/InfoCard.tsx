@@ -26,7 +26,7 @@ export default function InfoCard({
 }: InfoCardDetailsProps) {
   return (
     <div
-      className={`relative w-full max-w-[90%] h-full flex flex-col items-center justify-center bg-secondary-950 rounded-7 mx-auto ${className}`}
+      className={`relative w-full min-h-72 max-w-[90%]  flex flex-col items-center justify-center bg-secondary-950 rounded-7 mx-auto hover:drop-shadow-primary-active ${className}`}
     >
       {image && (
         <div className="w-full h-[250px] relative hover:drop-shadow-primary-active transition-all duration-300 content-center group">
@@ -42,7 +42,7 @@ export default function InfoCard({
       )}
       <div className="flex flex-col items-start justify-center p-8 space-y-3 w-full">
         <p className="text-secondary-50 text-lg font-semibold">{projectName}</p>
-        <div className="text-secondary-50 text-left text-sm">
+        <div className="text-secondary-50 text-left text-sm min-h-20">
           <PayloadLexicalReact
             content={description!}
             mark={(mark) => {
@@ -70,11 +70,13 @@ export default function InfoCard({
           ))}
         </div>
         <div className="flex items-center justify-between w-full text-sm text-secondary-50 font-semibold pt-5">
-          <Button className="bg-accent-700 hover:bg-accent-800 w-1/2">
-            <a href={previewLink} target="_blank">
-              Preview
-            </a>
-          </Button>
+          {previewLink !== '' && (
+            <Button className="bg-accent-700 hover:bg-accent-800 w-1/2">
+              <a href={previewLink} target="_blank">
+                Preview
+              </a>
+            </Button>
+          )}
           <p className="underline text-center">
             <a href={githubLink} target="_blank">
               Github Repository
